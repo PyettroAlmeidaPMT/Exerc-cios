@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+
+    .Dark{
+        background-color: black;
+    }
+    .DarkButton{
+        background-color: rgb(30,30,30);
+        color: white;
+              padding: 10%;
+        font-size: 30px;
+        position: absolute;
+        transform: translate(50%, 50%);
+    }
+    .White{
+        background-color: white;
+    }
+    .WhiteButton{
+        background-color: rgb(230,230,230);
+        color: black;
+        padding: 10%;
+        font-size: 30px;
+        position: absolute;
+        transform: translate(50%, 50%);
+    }
+    </style>
+</head>
+<body>
+
+    <div id="Root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <script>
+
+        const {useState, useEffect} = React
+
+
+function Button(){
+    const [isDark, SetState] = useState(false)
+
+    useEffect(() => {
+        document.body.className = isDark ? 'Dark' : 'White';
+    }, [isDark]);
+
+
+    const buttonHover = () => {
+            SetState(!isDark)    
+     }
+    return React.createElement( 
+   
+    'button',
+    {
+        onClick:(buttonHover),
+        className: isDark ? 'DarkButton' : 'WhiteButton'
+    } ,
+     isDark ? 'Dark Mode' : 'White mode'
+    
+
+    );
+}
+
+    ReactDOM.render(
+
+        React.createElement(Button),
+        document.getElementById('Root')
+
+    );
+    </script>
+
+</body>
+</html>
